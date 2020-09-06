@@ -1,3 +1,3 @@
-# evot-spam
+# evot-php
 
-This a branch of evot-php dedicated to offer support to the Evot Spam System
+This a very basic php framework developed to support EVOT Team Projects
