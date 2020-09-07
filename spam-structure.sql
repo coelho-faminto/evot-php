@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 06, 2020 at 01:22 PM
+-- Generation Time: Sep 07, 2020 at 01:21 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -39,20 +39,6 @@ CREATE TABLE `attachment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attachment_campaign`
---
-
-CREATE TABLE `attachment_campaign` (
-  `id` int(11) NOT NULL,
-  `attachment_id` int(11) NOT NULL,
-  `campaign_id` int(11) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-  `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `campaign`
 --
 
@@ -62,6 +48,20 @@ CREATE TABLE `campaign` (
   `description` text DEFAULT NULL,
   `subject` text DEFAULT NULL,
   `body` text DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `campaign_attachment`
+--
+
+CREATE TABLE `campaign_attachment` (
+  `id` int(11) NOT NULL,
+  `attachment_id` int(11) NOT NULL,
+  `campaign_id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -119,18 +119,18 @@ ALTER TABLE `attachment`
   ADD UNIQUE KEY `title` (`title`);
 
 --
--- Indexes for table `attachment_campaign`
---
-ALTER TABLE `attachment_campaign`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `attachment_id` (`attachment_id`,`campaign_id`);
-
---
 -- Indexes for table `campaign`
 --
 ALTER TABLE `campaign`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `title` (`title`);
+
+--
+-- Indexes for table `campaign_attachment`
+--
+ALTER TABLE `campaign_attachment`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `attachment_id` (`attachment_id`,`campaign_id`);
 
 --
 -- Indexes for table `client`
@@ -164,15 +164,15 @@ ALTER TABLE `attachment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `attachment_campaign`
---
-ALTER TABLE `attachment_campaign`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `campaign`
 --
 ALTER TABLE `campaign`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `campaign_attachment`
+--
+ALTER TABLE `campaign_attachment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
