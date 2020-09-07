@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 07, 2020 at 01:21 PM
+-- Generation Time: Sep 07, 2020 at 01:23 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -60,8 +60,8 @@ CREATE TABLE `campaign` (
 
 CREATE TABLE `campaign_attachment` (
   `id` int(11) NOT NULL,
-  `attachment_id` int(11) NOT NULL,
   `campaign_id` int(11) NOT NULL,
+  `attachment_id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
