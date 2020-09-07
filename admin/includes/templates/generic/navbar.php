@@ -31,6 +31,15 @@ class NavbarTemplate extends Template
                             <a class="dropdown-item" href="?page=campaign&action=list">Lista</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Anexos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="?page=attachment&action=create">Novo</a>
+                            <a class="dropdown-item" href="?page=attachment&action=list">Lista</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>

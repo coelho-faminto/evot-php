@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/attachment.php';
 
-class Attachmentontroller
+class AttachmentController
 {
     public $model;
 

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../template.php';
 require_once __DIR__ . '/../generic/link.php';
 
-class DeleteCampaignTemplate extends Template
+class DeleteAttachmentTemplate extends Template
 {
     public function confirm($item)
     {
@@ -14,13 +14,13 @@ class DeleteCampaignTemplate extends Template
         <div class="section">
             <div class="row">
                 <div class="col text-center">
-                    Tem certeza que deseja remover esta campanha?
+                    Tem certeza que deseja remover este anexo?
                 </div>
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <a href="?page=campaign&action=delete&id=<?= $item['id'] ?>&confirm" class="btn btn-danger" role="button">Sim, remover campanha!</a>
-                    <a href="?page=campaign&action=view&id=<?= $item['id'] ?>" class="btn btn-secondary" role="button">Não, cancelar!</a>
+                    <a href="?page=attachment&action=delete&id=<?= $item['id'] ?>&confirm" class="btn btn-danger" role="button">Sim, remover campanha!</a>
+                    <a href="?page=attachment&action=view&id=<?= $item['id'] ?>" class="btn btn-secondary" role="button">Não, cancelar!</a>
                 </div>
             </div>
         </div>

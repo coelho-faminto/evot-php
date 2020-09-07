@@ -1,14 +1,14 @@
 <?php
-require_once __DIR__ . '/../controllers/campaign.php';
-require_once __DIR__ . '/../views/campaign.php';
+require_once __DIR__ . '/../controllers/attachment.php';
+require_once __DIR__ . '/../views/attachment.php';
 require_once __DIR__ . '/page.php';
-require_once __DIR__ . '/../templates/campaign/create.php';
-require_once __DIR__ . '/../templates/campaign/view.php';
-require_once __DIR__ . '/../templates/campaign/delete.php';
-require_once __DIR__ . '/../templates/campaign/list.php';
+require_once __DIR__ . '/../templates/attachment/create.php';
+require_once __DIR__ . '/../templates/attachment/view.php';
+require_once __DIR__ . '/../templates/attachment/delete.php';
+require_once __DIR__ . '/../templates/attachment/list.php';
 require_once __DIR__ . '/../templates/generic/link.php';
 
-class CampaignPage extends Page
+class AttachmentPage extends Page
 {
     public function create()
     {
@@ -16,7 +16,7 @@ class CampaignPage extends Page
         $success_messages = [];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $controller = new CampaignController();
+            $controller = new AttachmentController();
 
             try {
                 $id = $controller->create();
@@ -25,15 +25,15 @@ class CampaignPage extends Page
                     $id_html = urlencode(htmlspecialchars($id, ENT_QUOTES));
                     $id_link = (new LinkTemplate())->html(
                         "'{$id}'",
-                        "?page=campaign&action=view&id={$id_html}",
+                        "?page=attachment&action=view&id={$id_html}",
                         ['alert-link']
                     );
 
-                    $success_messages[] = "Campaign data inserted as {$id_link} into database successfully.";
+                    $success_messages[] = "Attachment data inserted as {$id_link} into database successfully.";
                 } else {
                     $error_message = $controller->model->db->getLastError();
 
-                    $error_messages[] = "Could not insert campaign data to database: {$error_message}";
+                    $error_messages[] = "Could not insert attachment data to database: {$error_message}";
                 }
             } catch (\Exception $e) {
                 $error_messages[] = $e->getMessage();
@@ -43,29 +43,29 @@ class CampaignPage extends Page
         $item = [];
 
         if (!empty($_REQUEST['id'])) {
-            $view = new CampaignView();
+            $view = new AttachmentView();
 
             $item = $view->getById();
         } elseif (!empty($error_messages)) {
             $item = $_REQUEST;
         }
 
-        return (new CreateCampaignTemplate())->html($success_messages, $error_messages, $item);
+        return (new CreateAttachmentTemplate())->html($success_messages, $error_messages, $item);
     }
 
     public function list()
     {
-        $view = new CampaignView();
+        $view = new AttachmentView();
 
         $view->model->db->orderBy('updatedAt');
         $items = $view->model->db->get($view->model->table_name, 10);
 
-        return (new ListCampaignTemplate())->html($items);
+        return (new ListAttachmentTemplate())->html($items);
     }
 
     public function view()
     {
-        $view = new CampaignView();
+        $view = new AttachmentView();
 
         $item = $view->getById();
 
@@ -74,12 +74,12 @@ class CampaignPage extends Page
             return false;
         }
 
-        return (new ViewCampaignTemplate())->html($item);
+        return (new ViewAttachmentTemplate())->html($item);
     }
 
     public function delete()
     {
-        $view = new CampaignView();
+        $view = new AttachmentView();
 
         $item = $view->getById();
 
@@ -89,23 +89,23 @@ class CampaignPage extends Page
         }
 
         if (!isset($_REQUEST['confirm'])) {
-            return (new DeleteCampaignTemplate())->confirm($item);
+            return (new DeleteAttachmentTemplate())->confirm($item);
         }
 
-        $controller = new CampaignController();
+        $controller = new AttachmentController();
 
         $success_messages = [];
         $error_messages = [];
 
         $controller->model->db->where('id', $item['id']);
         if ($controller->model->db->delete($controller->model->table_name)) {
-            $success_messages[] = "A campanha '{$item['id']}' foi removida com sucesso";
+            $success_messages[] = "O anexo '{$item['id']}' foi removido com sucesso";
         } else {
             $error_message = $controller->model->db->getLastError();
-            $error_messages[] = "Erro ao remover a campanha '{$item['id']}': {$error_message}";
+            $error_messages[] = "Erro ao remover o anexo '{$item['id']}': {$error_message}";
         }
 
-        return (new DeleteCampaignTemplate())->deleted($success_messages, $error_messages);
+        return (new DeleteAttachmentTemplate())->deleted($success_messages, $error_messages);
     }
 
     public function edit()
