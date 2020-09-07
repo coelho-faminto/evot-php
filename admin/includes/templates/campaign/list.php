@@ -23,12 +23,12 @@ class ListCampaignTemplate extends Template
                     </div>
                 </div>
 
-                <div class="row">
+                <!--<div class="row">
                     <div class="col text-right">
                         <a class="btn btn-secondary" role="button" href="?page=campaign&action=edit&id=<?= $v['id'] ?>">Editar</a>
                         <a class="btn btn-danger" role="button" href="?page=campaign&action=delete&id=<?= $v['id'] ?>">Remover</a>
                     </div>
-                </div>
+                </div>-->
                 <div class="row">
                     <div class="col">
                         <h1><a class="" href="?page=campaign&action=view&id=<?= $v['id'] ?>">#<?= $v['id'] ?> <?= $v['title'] ?></a></h1>
