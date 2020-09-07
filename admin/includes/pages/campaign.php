@@ -57,8 +57,7 @@ class CampaignPage extends Page
         if (!empty($_REQUEST['id'])) {
             $view = new CampaignView();
 
-            $view->model->db->where('id', $_REQUEST['id']);
-            $item = $view->model->db->getOne($view->model->table_name);
+            $item = $view->getById();
         } elseif (!empty($error_messages)) {
             $item = $_REQUEST;
         }
@@ -80,7 +79,7 @@ class CampaignPage extends Page
     {
         $view = new CampaignView();
 
-        $item = $view->getCampaignById();
+        $item = $view->getById();
 
         if (!$item) {
             throw new \Exception('Not found');
@@ -94,7 +93,7 @@ class CampaignPage extends Page
     {
         $view = new CampaignView();
 
-        $item = $view->getCampaignById();
+        $item = $view->getById();
 
         if (!$item) {
             throw new \Exception('Not found');
