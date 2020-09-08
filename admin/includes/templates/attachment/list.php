@@ -11,40 +11,51 @@ class ListAttachmentTemplate extends Template
 
         <div class="section">
 
-            <?php foreach ($items as $v) : ?>
+            <div class="row pt-3">
 
-                <?php $v = $this->htmlFilterArray($v); ?>
+                <?php foreach ($items as $v) : ?>
 
-                <div class="row">
-                    <div class="col">
-                        <hr>
+                    <?php $v = $this->htmlFilterArray($v); ?>
+
+                    <div class="col-sm-4 pb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="?page=attachment&action=view&id=<?= $v['id'] ?>"><?= $v['title'] ?></a></h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><?= $v['description'] ?></h6>
+                                <div class="text-right">
+                                    <a class="card-link" target="_blank" href="<?= $v['url'] ?>"><?= $v['url'] ?></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col">
-                        <h1><a class="" href="?page=attachment&action=view&id=<?= $v['id'] ?>">#<?= $v['id'] ?> <?= $v['title'] ?></a></h1>
+                    <!--
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h4><?= $v['description'] ?></h4>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col">
-                        <h2><a class="" target="_blank" href="<?= $v['url'] ?>"><?= $v['url'] ?></a></h2>
-                    </div>
-                </div>
 
-            <?php endforeach; ?>
+                    <div class="row">
+                        <div class="col">
+                            <h1><a class="" href="?page=attachment&action=view&id=<?= $v['id'] ?>">#<?= $v['id'] ?> <?= $v['title'] ?></a></h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h4><?= $v['description'] ?></h4>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <h2><a class="" target="_blank" href="<?= $v['url'] ?>"><?= $v['url'] ?></a></h2>
+                        </div>
+                    </div>
+                    -->
 
-            <div class="row">
-                <div class="col">
-                    <hr>
-                </div>
+                <?php endforeach; ?>
+
             </div>
-
         </div>
 
 

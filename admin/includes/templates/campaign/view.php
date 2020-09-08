@@ -13,7 +13,6 @@ class ViewCampaignTemplate extends Template
 
         ob_start(); ?>
 
-
         <div class="section">
             <div class="row">
                 <div class="col">
