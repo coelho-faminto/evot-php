@@ -9,7 +9,7 @@ class NavbarTemplate extends Template
         ob_start(); ?>
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
             <a class="navbar-brand" href="#">EVOT Spam</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

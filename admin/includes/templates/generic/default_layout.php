@@ -29,12 +29,34 @@ class DefaultLayoutTemplate extends Template
 
             <?= $headers ?>
 
+            <style>
+                body {
+                    background-color: #000;
+                    color: #91a1ad;
+                    /*background-image: url('https://cdn.wallpapersafari.com/29/6/0V26D1.png');*/
+                    background-image: url('https://cdn2.hubspot.net/hubfs/398536/Images/blog/bigstock--171177794.jpg');
+                    font-family: serif;
+                }
+
+                .container {
+                    background-color: rgba(0, 0, 0, 0.8866);
+                }
+
+                input[type="text"],
+                select,
+                textarea {
+                    background-color: #222 !important;
+                    border: none !important;
+                }
+            </style>
+
             <title><?= $title ?></title>
         </head>
 
         <body>
+            <?= $navbar ?>
+
             <div class="container">
-                <?= $navbar ?>
                 <?= $body ?>
             </div>
 
