@@ -34,7 +34,8 @@ class DefaultLayoutTemplate extends Template
                     background-color: #000;
                     color: #91a1ad;
                     /*background-image: url('https://cdn.wallpapersafari.com/29/6/0V26D1.png');*/
-                    background-image: url('https://cdn2.hubspot.net/hubfs/398536/Images/blog/bigstock--171177794.jpg');
+                    /*background-image: url('https://cdn2.hubspot.net/hubfs/398536/Images/blog/bigstock--171177794.jpg');*/
+                    background-image: url('http://3.bp.blogspot.com/-mh8KyKezR8I/UWb0Uc_KudI/AAAAAAAABzE/fU23X27yIes/s1600/10.+Eagle+Wallpaper.png');
                     font-family: serif;
                 }
 
