@@ -50,7 +50,17 @@ class CampaignAttachmentPage extends Page
             $item = $_REQUEST;
         }
 
-        return (new CreateCampaignAttachmentTemplate())->html($success_messages, $error_messages, $item);
+        $viewCampaign = new CampaignView();
+        $viewCampaign->model->db->orderBy('id');
+
+        $campaigns = $viewCampaign->model->db->get($viewCampaign->model->table_name);
+
+        $viewAttachment = new AttachmentView();
+        $viewAttachment->model->db->orderBy('id');
+
+        $attachments = $viewAttachment->model->db->get($viewAttachment->model->table_name);
+
+        return (new CreateCampaignAttachmentTemplate())->html($success_messages, $error_messages, $item, $campaigns, $attachments);
     }
 
     public function list()
@@ -86,7 +96,7 @@ class CampaignAttachmentPage extends Page
         $id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : '';
 
         $view->model->db->join("{$viewCampaign->model->table_name} c", 't.campaign_id=c.id', 'LEFT');
-        
+
         $view->model->db->join("{$viewAttachment->model->table_name} a", 't.attachment_id=a.id', 'LEFT');
 
         //$item = $view->getById();

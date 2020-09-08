@@ -21,14 +21,12 @@ class ViewAttachmentTemplate extends Template
             </div>
 
             <div class="row">
-                <div class="col text-right">
-                    <a class="btn btn-secondary" role="button" href="?page=attachment&action=edit&id=<?= $item['id'] ?>">Editar</a>
-                    <a class="btn btn-danger" role="button" href="?page=attachment&action=delete&id=<?= $item['id'] ?>">Remover</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
+                <div class="col-auto">
                     <h1>#<?= $item['id'] ?> <?= $item['title'] ?></h1>
+                </div>
+                <div class="col text-right">
+                    <a class="btn btn-secondary btn-sm" role="button" href="?page=attachment&action=edit&id=<?= $item['id'] ?>">Editar</a>
+                    <a class="btn btn-danger btn-sm" role="button" href="?page=attachment&action=delete&id=<?= $item['id'] ?>">Remover</a>
                 </div>
             </div>
             <div class="row">

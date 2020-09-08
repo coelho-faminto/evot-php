@@ -19,9 +19,9 @@ class NavbarTemplate extends Template
                     <li class="nav-item active">
                         <a class="nav-link" href="?page=index">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="?page=campaign&action=list">Features</a>
-                    </li>
+                    </li>-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Campanhas
@@ -38,6 +38,15 @@ class NavbarTemplate extends Template
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="?page=attachment&action=create">Novo</a>
                             <a class="dropdown-item" href="?page=attachment&action=list">Lista</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Vínculos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="?page=campaign_attachment&action=create">Novo</a>
+                            <a class="dropdown-item" href="?page=campaign_attachment&action=list">Lista</a>
                         </div>
                     </li>
                 </ul>
