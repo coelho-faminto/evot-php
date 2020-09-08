@@ -65,9 +65,36 @@ class AttachmentPage extends Page
 
     public function view()
     {
+        /*
         $view = new AttachmentView();
 
         $item = $view->getById();
+
+        if (!$item) {
+            throw new \Exception('Not found');
+            return false;
+        }
+        */
+
+        $view = new CampaignAttachmentView();
+
+        $id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : '';
+        $id = $view->model->db->escape($id);
+
+        $item = $view->model->db->rawQuery("
+        SELECT
+            (
+                SELECT CONCAT('[', GROUP_CONCAT(
+                            JSON_OBJECT('id', id, 'title', title, 'description', description, 'url', url) SEPARATOR ', '), ']') AS campaigns 
+                FROM campaign AS c
+                WHERE c.id in (
+                    SELECT campaign_id FROM campaign_attachment WHERE attachment_id={$id}
+                )
+            ) AS campaign_json, a.* FROM attachment AS a WHERE a.id={$id}
+        
+        ");
+
+        $item = $item ? $item[0] : false;
 
         if (!$item) {
             throw new \Exception('Not found');

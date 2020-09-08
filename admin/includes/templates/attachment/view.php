@@ -6,6 +6,8 @@ class ViewAttachmentTemplate extends Template
 {
     public function html($item)
     {
+        $campaigns = !empty($item['campaign_json']) ? $item['campaign_json'] : '';
+
         $item = $this->htmlFilterArray($item);
 
         ob_start(); ?>
@@ -34,7 +36,22 @@ class ViewAttachmentTemplate extends Template
                     <h4><?= $item['description'] ?></h4>
                 </div>
             </div>
-            <div class="row mt-5">
+
+            <div class="row">
+                <div class="col">
+                    <?php $campaigns = json_decode($campaigns, true); ?>
+                    <?php $campaigns = $campaigns ? $this->htmlFilterArray($campaigns) : []; ?>
+
+                    <?php foreach ($campaigns as $v) : ?>
+
+                        <a href="?page=campaign&action=view&id=<?= $v['id'] ?>" class="badge badge-primary"><?= $v['title'] ?></a>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+
+            <div class="row mt-2">
                 <div class="col">
                     <h2><a href="<?= $item['url'] ?>" target="_blank"><?= $item['url'] ?></a></h2>
                 </div>

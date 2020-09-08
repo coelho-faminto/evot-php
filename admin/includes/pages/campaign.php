@@ -68,15 +68,15 @@ class CampaignPage extends Page
     public function view()
     {
         $view = new CampaignAttachmentView();
-        $viewCampaign = new CampaignView();
-        $viewAttachment = new AttachmentView();
 
         $id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : '';
         $id = $view->model->db->escape($id);
 
+        /*
         $view->model->db->join("{$viewCampaign->model->table_name} c", 't.campaign_id=c.id', 'RIGHT');
 
         $view->model->db->join("{$viewAttachment->model->table_name} a", 't.attachment_id=a.id', 'LEFT');
+        */
 
         //$item = $view->getById();
 
