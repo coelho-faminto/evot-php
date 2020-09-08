@@ -14,7 +14,9 @@ class CampaignAttachmentController
     {
         $data = $data ?: $_REQUEST;
 
-        return (!empty($data['title']));
+        return (
+            (!empty($data['campaign_id'])) &&
+            (!empty($data['attachment_id'])));
     }
 
     public function create($data = [])
@@ -27,11 +29,13 @@ class CampaignAttachmentController
         }
 
         $insert = [
-            'title' => $data['title'],
-            'description' => !empty($data['description']) ? $data['description'] : '',
-            'subject' => !empty($data['subject']) ? $data['subject'] : '',
-            'body' => !empty($data['body']) ? $data['body'] : ''
+            'campaign_id' => $data['campaign_id'],
+            'attachment_id' => $data['attachment_id']
         ];
+
+        if (!empty($data['id'])) {
+            $insert['id'] = $data['id'];
+        }
 
         $this->model->db->onDuplicate($insert, 'id');
         return $this->model->insert($insert);

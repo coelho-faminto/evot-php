@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../controllers/campaign.php';
 require_once __DIR__ . '/../views/campaign.php';
+require_once __DIR__ . '/../views/campaign_attachment.php';
+require_once __DIR__ . '/../views/attachment.php';
 require_once __DIR__ . '/page.php';
 require_once __DIR__ . '/../templates/campaign/create.php';
 require_once __DIR__ . '/../templates/campaign/view.php';
@@ -65,9 +67,39 @@ class CampaignPage extends Page
 
     public function view()
     {
-        $view = new CampaignView();
+        $view = new CampaignAttachmentView();
+        $viewCampaign = new CampaignView();
+        $viewAttachment = new AttachmentView();
 
-        $item = $view->getById();
+        $id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : '';
+        $id = $view->model->db->escape($id);
+
+        $view->model->db->join("{$viewCampaign->model->table_name} c", 't.campaign_id=c.id', 'RIGHT');
+
+        $view->model->db->join("{$viewAttachment->model->table_name} a", 't.attachment_id=a.id', 'LEFT');
+
+        //$item = $view->getById();
+
+        //$view->model->db->where('c.id', $id);
+
+        //$item = $view->model->db->getOne("{$view->model->table_name} t", 't.*, c.title AS campaign_title, a.title AS attachment_title');
+
+        $item = $view->model->db->rawQuery("
+        SELECT
+            (
+                SELECT CONCAT('[', GROUP_CONCAT(
+                            JSON_OBJECT('id', id, 'title', title, 'description', description, 'url', url) SEPARATOR ', '), ']') AS attachments 
+                FROM attachment AS a
+                WHERE a.id in (
+                    SELECT attachment_id FROM campaign_attachment WHERE campaign_id={$id}
+                )
+            ) AS attachment_json, c.* FROM campaign AS c WHERE c.id={$id}
+        
+        ");
+
+        $item = $item ? $item[0] : false;
+
+        //var_dump($view->model->db->getLastQuery());
 
         if (!$item) {
             throw new \Exception('Not found');

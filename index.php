@@ -3,6 +3,7 @@ require_once __DIR__ . '/admin/includes/templates/generic/default_layout.php';
 require_once __DIR__ . '/admin/includes/templates/home.php';
 require_once __DIR__ . '/admin/includes/pages/campaign.php';
 require_once __DIR__ . '/admin/includes/pages/attachment.php';
+require_once __DIR__ . '/admin/includes/pages/campaign_attachment.php';
 
 function main()
 {
@@ -19,6 +20,11 @@ function main()
         case 'attachment':
             # Attachment Page
             $body = new AttachmentPage();
+            break;
+
+        case 'campaign_attachment':
+            # Attachment Page
+            $body = new CampaignAttachmentPage();
             break;
 
         default:

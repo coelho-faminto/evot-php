@@ -1,11 +1,14 @@
 <?php
 require_once __DIR__ . '/../template.php';
 require_once __DIR__ . '/../generic/link.php';
+require_once __DIR__ . '/../../commons/json.php';
 
 class ViewCampaignTemplate extends Template
 {
     public function html($item)
     {
+        $attachments = !empty($item['attachment_json']) ? $item['attachment_json'] : '';
+
         $item = $this->htmlFilterArray($item);
 
         ob_start(); ?>
@@ -34,7 +37,22 @@ class ViewCampaignTemplate extends Template
                     <h4><?= $item['description'] ?></h4>
                 </div>
             </div>
-            <div class="row mt-5">
+
+            <div class="row">
+                <div class="col">
+                    <?php $attachments = json_decode($attachments, true); ?>
+                    <?php $attachments = $attachments ? $this->htmlFilterArray($attachments) : []; ?>
+
+                    <?php foreach ($attachments as $v) : ?>
+
+                        <a href="?page=attachment&action=view&id=<?= $v['id'] ?>" class="badge badge-primary"><?= $v['title'] ?></a>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+
+            <div class="row mt-2">
                 <div class="col">
                     <h2><?= $item['subject'] ?></h2>
                 </div>

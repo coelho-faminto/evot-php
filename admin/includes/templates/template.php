@@ -5,11 +5,34 @@ class Template
     {
         if ($data) {
             foreach ($data as $k => $v) {
-                $data[$k] = htmlspecialchars($v, ENT_QUOTES);
+                if (gettype($v) == 'array') {
+                    $data[$k] = $this->htmlFilterArray($v);
+                } else {
+                    $data[$k] = htmlspecialchars($v, ENT_QUOTES);
+                }
             }
         }
 
         return $data;
+    }
+
+    protected function cleanJSON($jsonString)
+    {
+        if (!is_string($jsonString) || !$jsonString) return '';
+
+        // Remove unsupported characters
+        // Check http://www.php.net/chr for details
+        for ($i = 0; $i <= 31; ++$i)
+            $jsonString = str_replace(chr($i), "", $jsonString);
+
+        $jsonString = str_replace(chr(127), "", $jsonString);
+
+        // Remove the BOM (Byte Order Mark)
+        // It's the most common that some file begins with 'efbbbf' to mark the beginning of the file. (binary level)
+        // Here we detect it and we remove it, basically it's the first 3 characters.
+        if (0 === strpos(bin2hex($jsonString), 'efbbbf')) $jsonString = substr($jsonString, 3);
+
+        return $jsonString;
     }
 
     protected function get_words($sentence, $count = 10)
