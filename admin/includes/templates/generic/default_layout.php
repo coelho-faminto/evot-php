@@ -35,12 +35,14 @@ class DefaultLayoutTemplate extends Template
                     color: #91a1ad;
                     /*background-image: url('https://cdn.wallpapersafari.com/29/6/0V26D1.png');*/
                     /*background-image: url('https://cdn2.hubspot.net/hubfs/398536/Images/blog/bigstock--171177794.jpg');*/
-                    background-image: url('http://3.bp.blogspot.com/-mh8KyKezR8I/UWb0Uc_KudI/AAAAAAAABzE/fU23X27yIes/s1600/10.+Eagle+Wallpaper.png');
+                    background-image: url('resources/img/eagle.png');
+                    background-size: cover;
                     font-family: serif;
                 }
 
                 .container {
-                    background-color: rgba(0, 0, 0, 0.8866);
+                    background-color: rgba(0, 0, 0, 0.666);
+                    border-radius: 0.333rem;
                 }
 
                 input[type="text"],
