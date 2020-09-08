@@ -29,6 +29,8 @@ class DefaultLayoutTemplate extends Template
 
             <?= $headers ?>
 
+            <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
             <style>
                 body {
                     background-color: #000;
@@ -37,7 +39,7 @@ class DefaultLayoutTemplate extends Template
                     /*background-image: url('https://cdn2.hubspot.net/hubfs/398536/Images/blog/bigstock--171177794.jpg');*/
                     background-image: url('resources/img/eagle.png');
                     background-size: cover;
-                    font-family: serif;
+                    font-family: 'Lora', serif;
                 }
 
                 .container {
